@@ -1,0 +1,36 @@
+.image_upload_form {
+  background-color: lightsalmon;
+  border-radius: 30px;
+  height: 300px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px dashed;
+}
+
+.image_upload_form span{
+  cursor: pointer;
+}
+
+.image_upload_form img {
+  width: 400px;
+  height: auto;
+}
+
+.row {
+  display: flex; // 자식 요소들을 가로 정렬
+  align-items: center;
+}
+
+.column {
+  justify-content: center;
+  flex-grow: 1;
+  height: 100px;
+  //background-color: lightblue;
+  margin: 10px;
+}
+
+.end {
+  justify-content: flex-end;
+}

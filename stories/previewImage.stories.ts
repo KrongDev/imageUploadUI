@@ -3,6 +3,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import {PreviewImage} from "../comp/preview/PreviewImage";
+import './css/ImageUploadForm.scss';
 
 const meta = {
     title: 'image/preview',

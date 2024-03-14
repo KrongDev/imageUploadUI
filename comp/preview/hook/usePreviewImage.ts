@@ -1,14 +1,10 @@
 import {ChangeEvent, useState} from "react";
 
-interface Param {
-    allowedExtension?: string[];
-}
-
-export const usePreviewImage = ({ allowedExtension = ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp'] }: Param) => {
+export const usePreviewImage = () => {
 
     const [image, setImage] = useState<File | null>(null);
     const [imageReaderPath, setImageReaderPath] = useState('');
-    // allowedExtension = allowedExtension ? allowedExtension : ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp'];
+    const allowedExtension =  ['image/jpeg', 'image/jpg', 'image/png','image/gif','image/bmp'];
     const onChangeImage = (e:  ChangeEvent<HTMLInputElement>
     ) => {
         const files = e.target.files;
@@ -27,9 +23,15 @@ export const usePreviewImage = ({ allowedExtension = ['image/jpeg', 'image/jpg',
         return allowedExtension.indexOf(file.type) > -1;
     }
 
+    const handleRemoveImage = () => {
+        setImage(null);
+        setImageReaderPath('');
+    }
+
     return {
         image,
         imageReaderPath,
-        onChangeImage
+        onChangeImage,
+        handleRemoveImage
     }
 }

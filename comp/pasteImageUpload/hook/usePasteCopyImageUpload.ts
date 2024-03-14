@@ -24,9 +24,15 @@ export const usePasteCopyImageUpload = () => {
         }
     }
 
+    const handleRemoveImage = () => {
+        setSelectImage(null);
+        setSelectImagePath('');
+    }
+
     return {
         selectImage,
         selectImagePath,
-        handlePaste
+        handlePaste,
+        handleRemoveImage
     }
 }

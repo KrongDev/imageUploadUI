@@ -1,8 +1,10 @@
 import React from "react";
 import {useDragAndDrop} from "./hook/useDragAndDrop";
+import {useCustomImageUpload} from "../hook/useCustomImageUpload";
 
 
 export const DragAndDropImage = () => {
+    const [ ref, onClick] = useCustomImageUpload();
     const {
         isDragging,
         selectImage,
@@ -10,44 +12,46 @@ export const DragAndDropImage = () => {
         handleFileSelect,
         handleDragStart,
         handleDragOver,
-        handleDragLeave
+        handleDragLeave,
+        handleRemoveImage
     } = useDragAndDrop();
+
     return (
         <div
             className="workspace"
-            onDragEnter={handleDragStart}
-            onDrop={handleFileSelect}
-            onDragOver={handleDragOver}
         >
-            {isDragging && (
-                <div
-                    className="fileUploadZone"
-                    onDragLeave={handleDragLeave}
-                >
+            <input
+                type={'file'}
+                style={{display: 'none'}}
+                // onChange={onChangeImage}
+                ref={ref}
+            />
+            <div className={'row end'} style={{width: '500px', marginBottom: 10}}>
+                {
+                    selectImage && <button type={'button'} onClick={handleRemoveImage}>삭제</button>
+                }
+            </div>
+            <div
+                className={'image_upload_form'}
+                onDragEnter={handleDragStart}
+                onDrop={handleFileSelect}
+                onDragOver={handleDragOver}
+                onMouseOver={e => console.log('move')}
+            >
+                {isDragging ? (
                     <div
-                        style={{display: "flex"}}
-                    >이미지를 업로드 해주세요.</div>
-                </div>
-            )}
-            <div className="file-upload-content">
-                <p>이미지를 화면에 Drag 해주세요</p>
-                <input type="text" placeholder="입력란"/>
-
-                {selectImage && selectImagePath && (
-                    // <div>
-                    //     <p>선택된 파일: {selectImage.name}</p>
-                    // </div>
-                    <div className={'row'}>
-                        <div className={'column image-container'}>
-                            <img src={selectImagePath} alt={'이미지입니다.'}/>
-                        </div>
-                        <div className={'column'}>
-                            <p>
-                                {selectImage.name}
-                            </p>
+                        className="fileDropZone"
+                        onDragLeave={handleDragLeave}
+                    >
+                        <div
+                            style={{display: "flex"}}
+                        >이미지를 업로드 해주세요.
                         </div>
                     </div>
-                )}
+                ) :
+                    selectImage ? <img src={selectImagePath} alt={'image'}/> : <span>파일 업로드</span>
+                }
+
             </div>
         </div>
     );

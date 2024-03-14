@@ -25,23 +25,25 @@ export const useDragAndDrop = () => {
     };
 
     const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
-        // console.log('start action')
         event.preventDefault();
         event.stopPropagation();
         setIsDragging(true);
     };
 
     const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-        // console.log('over action')
         event.preventDefault();
         event.stopPropagation();
         if(!isDragging)setIsDragging(true);
     };
 
     const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
-        // console.log('leave action')
         setIsDragging(false);
     };
+
+    const handleRemoveImage = () => {
+        setSelectImage(null);
+        setSelectImagePath('');
+    }
 
     return {
         selectImage,
@@ -50,6 +52,7 @@ export const useDragAndDrop = () => {
         handleFileSelect,
         handleDragStart,
         handleDragOver,
-        handleDragLeave
+        handleDragLeave,
+        handleRemoveImage
     }
 }

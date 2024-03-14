@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import {DragAndDropImage} from "../comp/dragAndDrop/DragAndDropImage";
 import './css/DragDrop.scss';
+import './css/ImageUploadForm.scss';
 import {PasteImageUpload} from "../comp/pasteImageUpload/PasteImageUpload";
 
 const meta = {
